@@ -13,6 +13,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
+import { Header } from '../components/Header';
+import { ProgressBar } from '../components/ProgressBar';
 
 export function Welcome() {
     const navigation = useNavigation();
@@ -23,6 +25,10 @@ export function Welcome() {
 
     return(
         <SafeAreaView style={styles.container}>
+            <Header />
+
+            <ProgressBar />
+
             <View style={styles.wrapper}>
                 <Text style={styles.title}>
                     Vamos iniciar

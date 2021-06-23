@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "plantmanager",
-    "slug": "plantmanager",
+    "name": "emidio",
+    "slug": "emidio",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
