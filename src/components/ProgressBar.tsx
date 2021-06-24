@@ -1,4 +1,3 @@
-import { Jost_300Light_Italic } from '@expo-google-fonts/jost';
 import React from 'react';
 
 import {

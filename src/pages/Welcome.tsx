@@ -15,6 +15,7 @@ import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { Header } from '../components/Header';
 import { ProgressBar } from '../components/ProgressBar';
+import { Card } from '../components/Card';
 
 export function Welcome() {
     const navigation = useNavigation();
@@ -29,9 +30,49 @@ export function Welcome() {
 
             <ProgressBar />
 
+            <View style={styles.tasks}>
+                <Card 
+                    color={colors.red}
+                    icon="book"
+                    sendedTask={false}
+                    avaliatedTask={false}
+                    titleCard="Português"
+                    description="04 Abril | Pet 08 | Termina em 07 de Abril"
+                />
+
+                <Card 
+                    color={colors.green}
+                    icon="book"
+                    sendedTask={true}
+                    avaliatedTask={true}
+                    avaliation="A"
+                    titleCard="Portugues"
+                    description="04 Abril | Pet 08 | Termina em 07 de Abril"
+                />
+
+                <Card 
+                    color={colors.green}
+                    icon="globe"
+                    sendedTask={true}
+                    avaliatedTask={false}
+                    titleCard="Geografia"
+                    description="04 Abril | Pet 08 | Termina em 07 de Abril"
+                />
+
+                <Card 
+                    color={colors.green}
+                    icon="calculator"
+                    sendedTask={true}
+                    avaliatedTask={true}
+                    titleCard="Matemática"
+                    description="04 Abril | Pet 08 | Termina em 07 de Abril"
+                    avaliation="B"
+                />
+            </View>
+
             <View style={styles.wrapper}>
                 <Text style={styles.title}>
-                    Vamos iniciar
+                    .
                 </Text>
             </View>
         </SafeAreaView>
@@ -41,7 +82,7 @@ export function Welcome() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        
+        justifyContent: 'center'
     },
     wrapper: {
         flex: 1,
@@ -57,5 +98,9 @@ const styles = StyleSheet.create({
         marginTop: 38,
         fontFamily: fonts.heading,
         lineHeight: 34
+    },
+    tasks: {
+        marginTop: 20,
+        paddingHorizontal: 20
     }
 })

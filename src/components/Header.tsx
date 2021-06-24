@@ -9,8 +9,8 @@ import colors from '../styles/colors';
 
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
-import avatar from '../assets/thiago.jpeg';
-import { Jost_100Thin_Italic } from '@expo-google-fonts/jost';
+import avatar from '../../src/assets/thiago.jpeg';
+
 import fonts from '../styles/fonts';
 
 export function Header() {
