@@ -60,26 +60,26 @@ export function Card({
                     </View>
                 </View>
 
-                {
-                    !sendedTask && 
-                    <TouchableOpacity 
-                    style={styles.buttonStyle}
-                    >
-                            <AntDesign name="plus" size={20} color={colors.gray_light}/>
-                        </TouchableOpacity>
-                }
+                <View style={styles.icon}>
+                    {
+                        !sendedTask && 
+                        <TouchableOpacity 
+                        style={styles.buttonStyle}
+                        >
+                                <AntDesign name="plus" size={20} color={colors.gray_light}/>
+                            </TouchableOpacity>
+                    }
 
-                {
-                    (sendedTask && !avaliatedTask) &&
-                        <FontAwesome name="check-circle" size={55} color={colors.gray}/>
-                }
+                    {
+                        (sendedTask && !avaliatedTask) &&
+                            <FontAwesome name="check-circle" size={45} color={colors.gray}/>
+                    }
 
-                {
-                    (sendedTask && avaliatedTask) &&
-                        <Text style={styles.avaliation}>{avaliation}</Text>
-                }
-
-                
+                    {
+                        (sendedTask && avaliatedTask) &&
+                            <Text style={styles.avaliation}>{avaliation}</Text>
+                    }
+                </View>                
             </View>
         </View>
     )
@@ -108,8 +108,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 18
     },
     buttonStyle: {
-        width: 50,
-        height: 50,
+        width: '100%',
+        height: '100%',
         borderRadius: 25,
         backgroundColor: colors.red,
         justifyContent: 'center',
@@ -131,8 +131,14 @@ const styles = StyleSheet.create({
         fontSize: 13
     },
     avaliation: {
-        fontSize: 70,
+        fontSize: 50,
         fontFamily: fonts.heading,
         color: colors.gray
+    },
+    icon: {
+        width: 45,
+        height: 45,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
