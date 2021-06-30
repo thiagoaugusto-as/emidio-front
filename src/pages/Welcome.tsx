@@ -69,12 +69,6 @@ export function Welcome() {
                     avaliation="B"
                 />
             </View>
-
-            <View style={styles.wrapper}>
-                <Text style={styles.title}>
-                    .
-                </Text>
-            </View>
         </SafeAreaView>
     )
 }
@@ -101,6 +95,7 @@ const styles = StyleSheet.create({
     },
     tasks: {
         marginTop: 20,
+        height: 550,
         paddingHorizontal: 20
     }
 })

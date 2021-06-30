@@ -4,8 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import colors from '../styles/colors';
 
 import { Welcome } from '../pages/Welcome';
+import { SendTask } from '../pages/SendTask';
 
-//import AuthRoutes from './tab.routes';
+import AuthRoutes from './tab.routes';
+import { SystemInfo } from '../pages/SystemInfo';
 
 const stackRoutes = createStackNavigator();
 
@@ -20,8 +22,19 @@ const AppRoutes: React.FC = () => (
     >
         <stackRoutes.Screen 
             name="Welcome"
-            component={Welcome}
+            component={AuthRoutes}
         />   
+
+
+        <stackRoutes.Screen 
+            name="SendTask"
+            component={SendTask}
+        />   
+        
+        <stackRoutes.Screen 
+            name="SystemInfo"
+            component={AuthRoutes}
+        />  
     </stackRoutes.Navigator>
 )
 

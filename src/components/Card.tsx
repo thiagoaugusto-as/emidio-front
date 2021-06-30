@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     Text
 } from 'react-native';
+
 import colors from '../styles/colors';
 
 import { 
@@ -17,6 +18,7 @@ import {
 import fonts from '../styles/fonts';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import {  } from '@expo/vector-icons/build/createIconSet';
+import { useNavigation } from '@react-navigation/native';
 
 interface ButtonProps {
     color: string;
@@ -37,6 +39,12 @@ export function Card({
     titleCard,
     description
 }: ButtonProps) {
+    const navigation = useNavigation();
+
+    function handleTaskSubmit() {
+        navigation.navigate("SendTask");
+    }
+
     return(
         <View style={styles.container}>
             <View style={[styles.barStyle, {backgroundColor: color}]}/>
@@ -64,7 +72,8 @@ export function Card({
                     {
                         !sendedTask && 
                         <TouchableOpacity 
-                        style={styles.buttonStyle}
+                            onPress={handleTaskSubmit}
+                            style={styles.buttonStyle}
                         >
                                 <AntDesign name="plus" size={20} color={colors.gray_light}/>
                             </TouchableOpacity>
