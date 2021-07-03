@@ -4,12 +4,14 @@ import colors from '../styles/colors';
 import { Welcome } from '../pages/Welcome';
 import { MaterialIcons } from '@expo/vector-icons';
 import { SystemInfo } from '../pages/SystemInfo';
+import { Profile } from '../pages/Profile';
 
 const AppTab = createBottomTabNavigator();
 
-const AuthRoutes = () => {
+const TabRoutes = () => {
     return(
         <AppTab.Navigator
+            initialRouteName="Minhas Atividades"
             tabBarOptions={{
                 activeTintColor: colors.green,
                 inactiveTintColor: colors.heading,
@@ -23,7 +25,7 @@ const AuthRoutes = () => {
         >
             <AppTab.Screen 
                 name="Perfil"
-                component={SystemInfo}
+                component={Profile}
                 options={{
                     tabBarIcon: (({ size, color}) => (
                         <MaterialIcons
@@ -68,4 +70,4 @@ const AuthRoutes = () => {
     )
 }
 
-export default AuthRoutes;
+export default TabRoutes;

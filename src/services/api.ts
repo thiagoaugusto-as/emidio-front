@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { globalConfig } from '../config/globalConfig';
 
 const api = axios.create({
-  baseURL: 'http://192.168.0.104:3000',
+  baseURL: globalConfig.baseURL,
 });
 
 export {api}

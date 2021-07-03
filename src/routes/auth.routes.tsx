@@ -3,13 +3,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import colors from '../styles/colors';
 
-import { SendTask } from '../pages/SendTask';
-
-import TabRoutes from './tab.routes';
+import { Login } from '../pages/Login';
 
 const stackRoutes = createStackNavigator();
 
-const AppRoutes: React.FC = () => (
+const AuthRoutes: React.FC = () => (
     <stackRoutes.Navigator
         headerMode="none"
         screenOptions={{
@@ -18,22 +16,12 @@ const AppRoutes: React.FC = () => (
             }
         }}
     >
-
         <stackRoutes.Screen 
-            name="Welcome"
-            component={TabRoutes}
+            name="Login"
+            component={Login}
         />   
 
-        <stackRoutes.Screen 
-            name="SendTask"
-            component={SendTask}
-        />   
-        
-        <stackRoutes.Screen 
-            name="SystemInfo"
-            component={TabRoutes}
-        />  
     </stackRoutes.Navigator>
 )
 
-export default AppRoutes;
+export default AuthRoutes;

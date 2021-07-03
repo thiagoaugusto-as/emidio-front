@@ -12,15 +12,18 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import avatar from '../../src/assets/thiago.jpeg';
 
 import fonts from '../styles/fonts';
+import { useAuth } from '../contexts/auth';
 
 export function Header() {
+    const { user } = useAuth();
+
     return(
         <View style={styles.container}>
             <Image source={avatar} style={styles.image} />
             
             <View>
                 <Text style={styles.nameTitle}> 
-                    Thiago Augusto
+                    {user?.name}
                 </Text>
 
                 <Text style={styles.nameClass}> 
