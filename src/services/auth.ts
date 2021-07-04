@@ -1,19 +1,11 @@
+import { UserDTO } from "./Dtos/systemDtos";
 import { api } from "./api";
-
-interface Response {
-    token: string;
-    user: {
-        name: string;
-        username: string;
-    };
-}
-
 interface InputLogin {
     password: string;
     username: string;
 }
 
-export async function signIn({ password, username }: InputLogin): Promise<Response | undefined> {
+export async function signIn({ password, username }: InputLogin): Promise<UserDTO | undefined> {
     try {
         const response = await api.post('/sessions', {
             username,

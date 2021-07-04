@@ -1,17 +1,23 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { UserDTO } from '../Dtos/systemDtos';
 import { api } from '../services/api';
 
 import * as auth from '../services/auth';
 
-interface User {
-    name: string;
-    username: string;
-}
-
 interface InputLogin {
     username: string;
     password: string;
+}
+
+interface User {
+    id: string;
+    name: string;
+    username: string;
+    isProfessor: boolean;
+    className: string;
+    classLevel: string;
+    classId: string;
 }
 
 interface AuthContextData {
@@ -49,6 +55,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
         if(response) {
             setUser(response.user);
+
+            console.log(response);
     
             api.defaults.headers['Authorization'] = `Bearer ${response.token}`;
     

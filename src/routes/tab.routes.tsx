@@ -6,12 +6,16 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { SystemInfo } from '../pages/SystemInfo';
 import { Profile } from '../pages/Profile';
 
+
+
 const AppTab = createBottomTabNavigator();
+
 
 const TabRoutes = () => {
     return(
         <AppTab.Navigator
             initialRouteName="Minhas Atividades"
+            sceneContainerStyle={{}}
             tabBarOptions={{
                 activeTintColor: colors.green,
                 inactiveTintColor: colors.heading,
@@ -21,8 +25,11 @@ const TabRoutes = () => {
                     height: 60,
                     paddingTop: 0
                 }
-            }}    
+                
+            }}   
+            
         >
+
             <AppTab.Screen 
                 name="Perfil"
                 component={Profile}

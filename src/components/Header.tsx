@@ -9,7 +9,7 @@ import colors from '../styles/colors';
 
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
-import avatar from '../../src/assets/thiago.jpeg';
+import avatar from '../../src/assets/thiago.png';
 
 import fonts from '../styles/fonts';
 import { useAuth } from '../contexts/auth';
@@ -27,10 +27,9 @@ export function Header() {
                 </Text>
 
                 <Text style={styles.nameClass}> 
-                    4º ano amarelo
+                    {`${user?.classLevel}º ano ${user?.className}`}
                 </Text>
             </View>
-
         </View>
     )   
 }

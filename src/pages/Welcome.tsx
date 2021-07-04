@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     SafeAreaView, 
     Text, 
     Image, 
     StyleSheet,
-    TouchableOpacity,
-    Dimensions,
+    FlatList,
     View
 } from 'react-native';
 
@@ -16,13 +15,33 @@ import fonts from '../styles/fonts';
 import { Header } from '../components/Header';
 import { ProgressBar } from '../components/ProgressBar';
 import { Card } from '../components/Card';
+import { ITaskResponse } from '../services/responses/systemResponses';
+import { getTasks } from '../services/tasks';
+import { useAuth } from '../contexts/auth';
 
 export function Welcome() {
     const navigation = useNavigation();
 
+    const [tasks, setTasks] = useState<ITaskResponse[] | undefined>();
+    
+    const { user } = useAuth();
+
     function handleStart() {
         navigation.navigate('UserIdentification');
     }
+
+    let icon="book";
+
+    useEffect(() => {
+        async function returnTasks() {
+            const responseTasks = await getTasks(user?.classId as string);
+            if(responseTasks) {
+                setTasks(responseTasks);
+            }
+        }
+
+        returnTasks();
+    }, [])
 
     return(
         <SafeAreaView style={styles.container}>
@@ -30,44 +49,53 @@ export function Welcome() {
 
             <ProgressBar />
 
+            
+
             <View style={styles.tasks}>
-                <Card 
-                    color={colors.red}
-                    icon="book"
-                    sendedTask={false}
-                    avaliatedTask={false}
-                    titleCard="Português"
-                    description="04 Abril | Pet 08 | Termina em 07 de Abril"
+                <FlatList 
+                    data={tasks}
+                    keyExtractor={(item) => String(item.id)}
+                    renderItem={({item}) => (
+                        <Card 
+                            color={colors.red}
+                            icon={icon}
+                            sendedTask={false}
+                            avaliatedTask={false}
+                            titleCard={item.discipline + " - " + item.title}
+                            description="04 Abril | Pet 08 | Termina em 07 de Abril"
+                            key={item.id}
+                        />
+                    )}
+                    showsVerticalScrollIndicator={false}
                 />
 
-                <Card 
-                    color={colors.green}
-                    icon="book"
-                    sendedTask={true}
-                    avaliatedTask={true}
-                    avaliation="A"
-                    titleCard="Portugues"
-                    description="04 Abril | Pet 08 | Termina em 07 de Abril"
-                />
+                
+                {/* {
+                    tasks?.map((task) => {
+                    
+                        switch(task.discipline ) {
+                            case 'Português':
+                                icon="book"
+                                break;
+                            case 'Matemática':
+                                icon="calculator"
+                                break;
+                            case 'Geografia':
+                                icon="globe"
+                                break;
+                        }
 
-                <Card 
-                    color={colors.green}
-                    icon="globe"
-                    sendedTask={true}
-                    avaliatedTask={false}
-                    titleCard="Geografia"
-                    description="04 Abril | Pet 08 | Termina em 07 de Abril"
-                />
-
-                <Card 
-                    color={colors.green}
-                    icon="calculator"
-                    sendedTask={true}
-                    avaliatedTask={true}
-                    titleCard="Matemática"
-                    description="04 Abril | Pet 08 | Termina em 07 de Abril"
-                    avaliation="B"
-                />
+                        return <Card 
+                            color={colors.red}
+                            icon={icon}
+                            sendedTask={false}
+                            avaliatedTask={false}
+                            titleCard={task.discipline + " - " + task.title}
+                            description="04 Abril | Pet 08 | Termina em 07 de Abril"
+                            key={task.id}
+                        />
+                    })
+                } */}
             </View>
         </SafeAreaView>
     )
@@ -79,7 +107,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     wrapper: {
-        flex: 1,
+        
         alignItems: 'center',
         justifyContent: 'space-around',
         paddingHorizontal: 20
@@ -94,8 +122,9 @@ const styles = StyleSheet.create({
         lineHeight: 34
     },
     tasks: {
+        flex: 1,
         marginTop: 20,
         height: 550,
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
     }
 })
