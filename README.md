@@ -1,2 +1,2 @@
-# PlantManager
+# 
 # emidio-front
